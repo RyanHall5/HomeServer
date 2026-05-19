@@ -44,8 +44,18 @@ Google Authenticator ssh Lockout (resolved):
 While installing and setting up google authenticator to my server, I accidentally broke ssh entirely and wasn't able to connect to the server from my laptop. I had to return to the headless served with KBM + a monitor to log in to the server physically. I fixed ssh by commenting out my changes in the sshd and sshd_config files. I stayed physically connected to the server, debugging my password + security code login until it was reliably working. The main issue was that KbdInteractiveAuthentication was incorrectly set to 'No' in the sshd_config file. 
 
 
+Future Improvements
+
+Company/Business section:
+Currently, the project is setup in 4 primary partitions, a shared section for family storage, friend storage, guest/temporary activity, and my personal storage. My primary storage takes up the vast majority of the drive since it is 14TB. My family also owns/operates a small business, and we are in the process of trying to grow that business through outreach. I am going to make a 5th partition of the drive for business related files. Images of products, events, CAD files, documentation, filings, contact lists, anything of that nature so we all have access to everything. 
+
+HTTPS proxy in place of tailscale:
+As mentioned in the challenges section, currently to use the project, you have to download and setup both tailscale and the nextcloud app. I would like to setup HTTPS proxies to securely open my server to the internet so that my users don't have to download tailscail for secure vpn connections. 
 
 
+Architecture (Needs Improvements)
 
-
+The currently architecture of the project flows like this:
+My personal device -> tailscale VPN mesh -> SSH -> Google Auth + Password Protected -> Server (for admin purposes)
+User personal device -> tailscale VPN mesh -> Server -> Docker Network -> Nextcloud Container -> Database (for user purposes)
 
