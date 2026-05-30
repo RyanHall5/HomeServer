@@ -1,6 +1,6 @@
 # Personal Linux Server - Private Cloud + Secure Remote Access
 
-Self-Hosted Linux server providing private cloud storage through NextCloud, with secure remote access via TailScale VPN meshes. Built for two primary purposes: Initially, to learn networking, Linux administration, ssh, and self-hosted infrastructure development. Secondly, to serve as a private, free, large storage file sharing and backup system for myself, family, and friends.
+Self-Hosted Linux server providing private cloud storage through NextCloud, with secure remote access via Cloudflare tunnels. Built for two primary purposes: Initially, to learn networking, Linux administration, ssh, and self-hosted infrastructure development. Secondly, to serve as a private, free, large storage file sharing and backup system for myself, family, and friends.
 
 <br>
 
