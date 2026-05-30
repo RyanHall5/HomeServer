@@ -12,7 +12,7 @@ Self-Hosted Linux server providing private cloud storage through NextCloud, with
 
 ### Problems addressed by project:
 
-1. Like me, you may find yourself getting these notifications: "there is not enough iCloud storage available", "Storage is full. You can't back up photos or videos, and Gmail and Drive are affected", or any kind of full storage notification. I don't want to delete old photos/videos since they hold sentimental values. So it feels like my only choice is to upgrade my storage plan for some annual fee.
+1. Like me, you may find yourself getting these notifications: "there is not enough iCloud storage available", "Storage is full. You can't back up photos or videos, and Gmail and Drive are affected", or any kind of full storage notification. I don't want to delete old photos/videos since they hold sentimental values. So it feels like my only choice is to upgrade my storage plan, but what if I don't want to upgrade?
 
 2. I have an iphone, my mother has an android, and often, when she sends me videos from her phone via text, the quality is just terrible. The only way we have found to share media reliably without corrupting quality, is via shared google photos, which takes up a lot of storage.
 
@@ -20,7 +20,7 @@ Self-Hosted Linux server providing private cloud storage through NextCloud, with
 
 ### How this project solves these problems:
 
-1. By making a one time purchase of a large physical storage device, you have access to much more storage space than the allocated amounts from apple, google, etc without any of the recurring fees. Google's default storage amounts is a mere 15GB, whereas you can find a new or used 1TB+ external hard drive for pretty cheap.
+1. By making a one time purchase of a large physical storage device, you have access to much more storage space than the allocated amounts from apple, google, etc. Google's default storage amounts is a mere 15GB, whereas you can find a new or used 1TB+ external hard drive for pretty cheap.
 
 2. Large external storage drives provide an abundance of space for backing up phones, laptops, desktops, projects, etc. This can be especially helpful if you are in a field like me (Engineering Student), and often find yourself with software, applications, and projects that take up a large amount of storage.
 
@@ -55,7 +55,7 @@ Server
 ```text
 User personal device
         ↓
-tailscale VPN mesh
+Cloudflare tunnel via browser
         ↓
 Server
         ↓
@@ -100,9 +100,11 @@ Database
 
 5. NextCloud (filesystem)
 
-6. Docker (container system)
+6. Cloudflare (secure connection)
 
-7. google-authenticator (optional server security)
+7. Docker (container system)
+
+8. google-authenticator (optional server security)
 
 <br>
 
@@ -112,9 +114,9 @@ Database
 
 ## Challenges / Debugging
 
-### Remote Access Configuration (Current):
+### Remote Access Configuration (resolved):
 
-I tried to setup remote access to be more friendly to non-technical people such as my family members by using Cloudflare tunneling but couldn't find a way to it without paying a recurring fee for a domain, which would defeat the purpose of the project so I decided to the connection method as installing tailscale. In the future I'll be looking more at HTTPS proxies, Nginx, and DuckDNS to try and host this service without requiring tailscale installation from users.
+Initially I had the server setup with tailscale connecting users to te server via their private vpn meshes, but this wasn't practical for non-technical users, and required a lot of overhead for adding new users. To resolve this issue, I purchased a cheap domain from Cloudflare for 4$/yr so that I could setup a Cloudflare tunnel to the server to ensure secure and easy access for non-technical users. Now, users are able to just type in the given url to their browsers, enter their nextcloud credentials, and they are good to go. In the future I'll be looking more at HTTPS proxies, Nginx, and DuckDNS to try and host this service for free without requiring tailscale installation from users.
 
 <br>
 
@@ -134,7 +136,7 @@ While installing and setting up google authenticator to my server, I accidentall
 
 <br>
 
-## Future Improvements
+## Potential Future Improvements
 
 ### Company/Business section:
 
@@ -142,6 +144,6 @@ Currently, the project is setup in 4 primary partitions, a shared section for fa
 
 <br>
 
-### HTTPS proxy in place of tailscale:
+### HTTPS proxy in place of cloudflare:
 
-As mentioned in the challenges section, currently to use the project, you have to download and setup both tailscale and the nextcloud app. I would like to setup HTTPS proxies to securely open my server to the internet so that my users don't have to download tailscail for secure vpn connections.
+As mentioned in the challenges section, currently to use the project, you have to either download and setup both tailscale and the nextcloud app, or pay for a domain to get a cloudflare tunnel working. I would like to setup HTTPS proxies to securely open my server to the internet so that my users don't have to download tailscail for secure vpn connections and anyone replicating the project doesn't have to pay recurring fees.
